@@ -34,6 +34,8 @@
 static void
 decorator_draw_window_decoration (decor_t *decor)
 {
+    return;
+
     gwd_theme_draw_window_decoration (gwd_theme, decor);
 }
 
@@ -502,7 +504,7 @@ request_update_window_decoration_size (WnckWindow *win)
  * drawable depths, creating pixmaps, creating XRenderPictures and
  * updating the window decoration name
  */
- 
+
 gboolean
 update_window_decoration_size (WnckWindow *win)
 {
@@ -615,6 +617,8 @@ draw_border_shape (Display	   *xdisplay,
 		   decor_context_t *c,
 		   void		   *closure)
 {
+    return;
+
     static XRenderColor white = { 0xffff, 0xffff, 0xffff, 0xffff };
     decor_t		d;
     decor_shadow_info_t *info = (decor_shadow_info_t *) closure;
@@ -711,6 +715,8 @@ bare_frame_update_shadow (Display		  *xdisplay,
 			   decor_shadow_options_t *opt_shadow,
 			   decor_shadow_options_t *opt_no_shadow)
 {
+    return;
+
     if (frame->border_shadow_active)
     {
 	decor_shadow_destroy (xdisplay, frame->border_shadow_active);
@@ -743,6 +749,8 @@ switcher_frame_update_shadow (Display		  *xdisplay,
 			      decor_shadow_options_t *opt_shadow,
 			      decor_shadow_options_t *opt_no_shadow)
 {
+    return;
+
     if (frame->border_shadow_active)
     {
 	decor_shadow_destroy (xdisplay, frame->border_shadow_active);
@@ -782,6 +790,8 @@ decor_frame_update_shadow (Display		  *xdisplay,
 			   decor_shadow_options_t *opt_shadow,
 			   decor_shadow_options_t *opt_no_shadow)
 {
+    return;
+
     gint left, right, top, bottom;
 
     if (*shadow_normal)
@@ -789,7 +799,7 @@ decor_frame_update_shadow (Display		  *xdisplay,
 	decor_shadow_destroy (xdisplay, *shadow_normal);
 	*shadow_normal = NULL;
     }
-    
+
     left = frame->win_extents.left;
     right = frame->win_extents.right;
     top = frame->win_extents.top;
@@ -863,7 +873,6 @@ decor_frame_update_shadow (Display		  *xdisplay,
     info->state = 0;
 }
 
-
 typedef struct _tdtd_shadow_options
 {
     decor_shadow_options_t *active_shadow;
@@ -876,6 +885,8 @@ frame_update_shadow (decor_frame_t	    *frame,
 		     decor_shadow_options_t *opt_active_shadow,
 		     decor_shadow_options_t *opt_inactive_shadow)
 {
+    return;
+
     static decor_shadow_options_t no_shadow = {0.0, 0.0, {0, 0, 0}, 0, 0};
     gwd_decor_frame_ref (frame);
 
@@ -907,6 +918,8 @@ update_frames_shadows (gpointer key,
 		       gpointer value,
 		       gpointer user_data)
 {
+    return;
+
     decor_frame_t	  *frame = (decor_frame_t *) value;
     tdtd_shadow_options_t  *opts;
     decor_shadow_options_t active_o, inactive_o;

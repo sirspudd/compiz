@@ -29,7 +29,7 @@
 #include "gtk-window-decorator.h"
 #include "gwd-theme-cairo.h"
 
-#define STROKE_ALPHA 0.1f
+#define STROKE_ALPHA 0.2f
 
 struct _GWDThemeCairo
 {
@@ -580,12 +580,10 @@ gwd_theme_cairo_draw_window_decoration (GWDTheme *theme,
 
     cairo_set_line_width (cr, 1.0);
 
-    draw_shadow_background (decor, cr, decor->shadow, decor->context);
-
     if (decor->active) {
         decor_color_t *title_color = cairo->title_color;
 
-        alpha = 0;
+        alpha = 0.1;
 
         fill_rounded_rectangle (cr,
                                 x1 + 0.5,
@@ -615,7 +613,7 @@ gwd_theme_cairo_draw_window_decoration (GWDTheme *theme,
                                 &title_color[0], 1.0, &title_color[1], alpha,
                                 SHADE_TOP | SHADE_RIGHT);
     } else {
-        alpha = 0;
+        alpha = 0.1;
 
         fill_rounded_rectangle (cr,
                                 x1 + 0.5,
@@ -705,7 +703,7 @@ gwd_theme_cairo_draw_window_decoration (GWDTheme *theme,
     cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
 
     if (decor->active) {
-        fg.alpha = 0;
+        fg.alpha = 0.1;
         gdk_cairo_set_source_rgba (cr, &fg);
 
         cairo_move_to (cr, x1 + 0.5, y1 + top - 0.5);
@@ -889,10 +887,7 @@ gwd_theme_cairo_draw_window_decoration (GWDTheme *theme,
         cairo_rectangle (cr, 0.0, 0.0, 16.0, 16.0);
         cairo_clip (cr);
 
-        if (decor->active)
-            cairo_paint (cr);
-        else
-            cairo_paint_with_alpha (cr, alpha);
+        cairo_paint_with_alpha (cr, alpha);
     }
 
     cairo_destroy (cr);

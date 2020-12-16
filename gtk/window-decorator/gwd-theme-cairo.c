@@ -29,7 +29,7 @@
 #include "gtk-window-decorator.h"
 #include "gwd-theme-cairo.h"
 
-#define STROKE_ALPHA 0.6f
+#define STROKE_ALPHA 0.1f
 
 struct _GWDThemeCairo
 {
@@ -585,7 +585,7 @@ gwd_theme_cairo_draw_window_decoration (GWDTheme *theme,
     if (decor->active) {
         decor_color_t *title_color = cairo->title_color;
 
-        alpha = decoration_alpha + 0.3;
+        alpha = 0;
 
         fill_rounded_rectangle (cr,
                                 x1 + 0.5,
@@ -615,7 +615,7 @@ gwd_theme_cairo_draw_window_decoration (GWDTheme *theme,
                                 &title_color[0], 1.0, &title_color[1], alpha,
                                 SHADE_TOP | SHADE_RIGHT);
     } else {
-        alpha = decoration_alpha;
+        alpha = 0;
 
         fill_rounded_rectangle (cr,
                                 x1 + 0.5,
@@ -705,7 +705,7 @@ gwd_theme_cairo_draw_window_decoration (GWDTheme *theme,
     cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
 
     if (decor->active) {
-        fg.alpha = 0.7;
+        fg.alpha = 0;
         gdk_cairo_set_source_rgba (cr, &fg);
 
         cairo_move_to (cr, x1 + 0.5, y1 + top - 0.5);

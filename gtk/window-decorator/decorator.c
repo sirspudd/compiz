@@ -620,6 +620,7 @@ draw_border_shape (Display	   *xdisplay,
     return;
 
     static XRenderColor white = { 0xffff, 0xffff, 0xffff, 0xffff };
+    static XRenderColor black = { 0x0000, 0x0000, 0x0000, 0x0000 };
     decor_t		d;
     decor_shadow_info_t *info = (decor_shadow_info_t *) closure;
     double		save_decoration_alpha;
@@ -674,7 +675,7 @@ draw_border_shape (Display	   *xdisplay,
 
     decoration_alpha = save_decoration_alpha;
 
-    XRenderFillRectangle (xdisplay, PictOpSrc, picture, &white,
+    XRenderFillRectangle (xdisplay, PictOpSrc, picture, &black,
 			  c->left_space,
 			  c->top_space,
 			  width - c->left_space - c->right_space,
@@ -1291,13 +1292,13 @@ update_default_decorations (GdkScreen *screen)
         default_frames[i].d = calloc (1, sizeof (decor_t));
 
         default_frames[i].d->context = i < WINDOW_TYPE_FRAMES_NUM ? &frame->window_context_active : &frame->window_context_inactive;
-        default_frames[i].d->shadow  =  i < WINDOW_TYPE_FRAMES_NUM ? frame->border_shadow_active : frame->border_shadow_inactive;
+        default_frames[i].d->shadow  =  0;
         default_frames[i].d->layout = NULL;
 
         decor_get_default_layout (default_frames[i].d->context, 1, 1, &default_frames[i].d->border_layout);
 
-        default_frames[i].d->width  = default_frames[i].d->border_layout.width;
-        default_frames[i].d->height = default_frames[i].d->border_layout.height;
+        default_frames[i].d->width  = 0;
+        default_frames[i].d->height = 0;
 
         default_frames[i].d->frame = frame;
         default_frames[i].d->active = i < WINDOW_TYPE_FRAMES_NUM ? TRUE : FALSE;
